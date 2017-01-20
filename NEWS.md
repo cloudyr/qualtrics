@@ -1,3 +1,3 @@
-# CHANGES TO PACKAGENAME 0.1.1
+# qualtrics 0.1.1
 
 * Initial release.

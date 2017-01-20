@@ -1,17 +1,19 @@
-Package: PACKAGENAME
+Package: qualtrics
 Type: Package
-Title: Package Template for 'the cloudyr project'
+Title: An R Client for Qualtrics
 Version: 0.1.1
 Date: 2017-01-19
-Authors@R: c(person("First", "Last", role = c("aut", "cre"),
-                    email = "example@gmail.com"))
-Description: This is package template to be copied when creating new packages for the cloudyr project.
-License: 
-URL: https://github.com/cloudyr/PACKAGENAME
-BugReports: https://github.com/cloudyr/PACKAGENAME/issues
+Authors@R: c(
+  person("James", "Dunham", role = c("aut", "cre"), email = "james@jdunham.io"),
+  person("Seth", "Barry", role = c("aut"), email = ""),
+  person("Jasper", "Ginn", role = c("aut"), email = "jasperginn@hotmail.com"))
+Description: qualtrics is a package for working with the Qualtrics survey platform and its data in R.
+License: GPL-3 | file LICENSE
+URL: https://github.com/cloudyr/qualtrics
+BugReports: https://github.com/cloudyr/qualtrics/issues
+Encoding: UTF-8
 Imports:
     httr,
-    aws.signature
 Suggests:
     testthat
 RoxygenNote: 5.0.1

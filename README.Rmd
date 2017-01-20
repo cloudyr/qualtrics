@@ -1,6 +1,6 @@
 # Qualtrics client for R
 
-**PACKAGENAME** is a package for something...
+**qualtrics** is a package for something...
 
 To use the package, you will need a Qualtrics account the associated API key. By default, all **cloudyr** packages look for keys in environment variables. For example:
 
@@ -11,23 +11,23 @@ Sys.setenv("QUALTRICS_KEY" = "mykey")
 ## Code Examples
 
 ```R
-library("PACKAGENAME")
+library("qualtrics")
 ```
 
 
 ## Installation
 
-[![CRAN](https://www.r-pkg.org/badges/version/PACKAGENAME)](https://cran.r-project.org/package=PACKAGENAME)
-![Downloads](https://cranlogs.r-pkg.org/badges/PACKAGENAME)
-[![Travis Build Status](https://travis-ci.org/cloudyr/PACKAGENAME.png?branch=master)](https://travis-ci.org/cloudyr/PACKAGENAME)
-[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/PROJECTNUMBER?svg=true)](https://ci.appveyor.com/project/cloudyr/PACKAGENAME)
-[![codecov.io](https://codecov.io/github/cloudyr/PACKAGENAME/coverage.svg?branch=master)](https://codecov.io/github/cloudyr/PACKAGENAME?branch=master)
+[![CRAN](https://www.r-pkg.org/badges/version/qualtrics)](https://cran.r-project.org/package=qualtrics)
+![Downloads](https://cranlogs.r-pkg.org/badges/qualtrics)
+[![Travis Build Status](https://travis-ci.org/cloudyr/qualtrics.png?branch=master)](https://travis-ci.org/cloudyr/qualtrics)
+[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/PROJECTNUMBER?svg=true)](https://ci.appveyor.com/project/cloudyr/qualtrics)
+[![codecov.io](https://codecov.io/github/cloudyr/qualtrics/coverage.svg?branch=master)](https://codecov.io/github/cloudyr/qualtrics?branch=master)
 
 This package is not yet on CRAN. To install the latest development version you can install from the cloudyr drat repository:
 
 ```R
 # latest stable version
-install.packages("PACKAGENAME", repos = c(cloudyr = "http://cloudyr.github.io/drat", getOption("repos")))
+install.packages("qualtrics", repos = c(cloudyr = "http://cloudyr.github.io/drat", getOption("repos")))
 ```
 
 Or, to pull a potentially unstable version directly from GitHub:
@@ -36,7 +36,7 @@ Or, to pull a potentially unstable version directly from GitHub:
 if (!require("ghit")) {
     install.packages("ghit")
 }
-ghit::install_github("cloudyr/PACKAGENAME")
+ghit::install_github("cloudyr/qualtrics")
 ```
 
 

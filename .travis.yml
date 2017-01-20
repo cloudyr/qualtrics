@@ -20,9 +20,10 @@ after_failure:
   email: 
     recipients:
      - thosjleeper@gmail.com
+     - james@jdunham.io
+     - jasperginn@hotmail.com
     on_success: change
     on_failure: change
 after_success:
 - Rscript -e 'library("covr");codecov()'
-#- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash knitreadme.sh
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash drat.sh

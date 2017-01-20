@@ -1,15 +1,17 @@
-citHeader("To cite package 'PACKAGENAME' in publications use:")
+citHeader("To cite package 'qualtrics' in publications use:")
      
  year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
  vers <- paste("R package version", meta$Version)
  
  citEntry(entry="Manual",
-		  title = "PACKAGENAME: An R Package",
-		  author = personList(as.person("Thomas J. Leeper")),
+		  title = "qualtrics: An R client for Qualtrics",
+		  author = personList(as.person("Seth Barry"),
+                              as.person("James Dunham"),
+                              as.person("Jasper Ginn")),
 		  year = year,
 		  note = vers,
 		  textVersion =
-		  paste("Thomas J. Leeper (",
+		  paste("Barry, Seth, James Dunham, and Jasper Ginn (",
 				year,
-				"). PACKAGENAME: An R Packge. ",
+				"). qualtrics: An R client for Qualtrics. ",
 				vers, ".", sep=""))
