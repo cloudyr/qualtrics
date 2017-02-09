@@ -27,7 +27,6 @@ test_that("if argument 'action' is an empty string, don't make a request", {
   expect_error(request("GET", ""), "'action' is not a positive-length string")
 })
 
-
 test_that("request verbosity works", {
   expect_message(request("GET", "surveys", verbose = TRUE),
     "Sending GET request")
@@ -56,10 +55,10 @@ test_that("add_qheaders works as expected", {
   expect_equal(unname(response$headers["x-api-token"]), "key value")
 })
 
-test_that("set_if_missing works as expected", {
-  expect_silent(set_if_missing("value"))
-  expect_equal(suppressWarnings(set_if_missing("")), "az1")
-  expect_warning(set_if_missing(""), "Set the environment variable")
+test_that("default_if_missing works as expected", {
+  expect_silent(default_if_missing("value"))
+  expect_equal(suppressWarnings(default_if_missing("")), "az1")
+  expect_warning(default_if_missing(""), "Set the environment variable")
 })
 
 test_that("build_api_url works as expected", {

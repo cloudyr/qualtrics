@@ -36,11 +36,12 @@ request <- function(verb = c("GET", "POST", "PUT", "DELETE"),
   verbose = FALSE,
   ...) {
 
+  read_if_missing(key)
+  subdomain <- default_if_missing(subdomain)
+
   verb <- match.arg(verb)
   assert_that(is_text(verb))
   assert_that(is_text(action))
-  assert_that(is_key(key))
-  subdomain <- set_if_missing(subdomain)
   assert_that(is_text(subdomain))
   assert_that(is.flag(verbose))
 
@@ -49,14 +50,30 @@ request <- function(verb = c("GET", "POST", "PUT", "DELETE"),
   if (verbose) {
     message("Sending ", verb, " request to ", api_url)
   }
+
   response <- httr::VERB(verb,
     api_url,
     add_qheaders(key),
     encode = ifelse(identical(verb, "POST"), "json", NULL),
     ...)
+
   stop_for_status(response)
   warn_on_notice(response)
   return(response)
+}
+
+read_if_missing <- function(key) {
+  # If argument key doesn't give a positvie-length string, try to read an API
+  # key from file using key_from_file().
+  #
+  # This function is called from an exported function that has an argument 'key'
+  # defaulting to the environment variable QUALTRICS_KEY.
+  assertthat::assert_that(assertthat::is.string(key))
+  if (key == "") {
+    key_from_file()
+  } else {
+    return(TRUE)
+  }
 }
 
 stop_for_status <- function(response) {
@@ -110,7 +127,7 @@ add_qheaders <- function(key) {
   httr::add_headers("content_type" = "application/json", "x-api-token" = key)
 }
 
-set_if_missing <- function(subdomain) {
+default_if_missing <- function(subdomain) {
   # If the subdomain is a length-zero string, the environment variable
   # QUALTRICS_SUBDOMAIN hasn't been (properly) set. Return a valid subdomain to
   # be used (\code{az1}) and throw a warning.
