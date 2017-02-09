@@ -5,7 +5,7 @@ test_that('key_from_file reads from a file as expected', {
 
   expect_silent(value <- key_from_file(fname))
   expect_equal(value, "key_value")
-  expect_message(key_from_file(fname, verbose = TRUE), fname)
+  expect_message(key_from_file(fname, verbose = TRUE), "Set API key from")
 
   cat("", file = fname, fill = TRUE)
   expect_error(key_from_file(fname), "Couldn't find key")
