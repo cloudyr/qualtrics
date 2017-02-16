@@ -55,12 +55,6 @@ test_that("add_qheaders works as expected", {
   expect_equal(unname(response$headers["x-api-token"]), "key value")
 })
 
-test_that("default_if_missing works as expected", {
-  expect_silent(default_if_missing("value"))
-  expect_equal(suppressWarnings(default_if_missing("")), "az1")
-  expect_warning(default_if_missing(""), "Set the environment variable")
-})
-
 test_that("build_api_url works as expected", {
   expect_equal(build_api_url("surveys", "az1"),
     "https://az1.qualtrics.com/API/v3/surveys")

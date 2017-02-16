@@ -25,13 +25,13 @@ assertthat::on_failure(is_text) <- function(call, env) {
   paste0("'", call$x, "' is not a positive-length string")
 }
 
-# is_key is a variant of is_text with an error message for use with API keys
-is_key <- is_text
-assertthat::on_failure(is_key) <- function(call, env) {
-  paste0("The Qualtrics API key should be a positive-length string. ",
-         "Set the environment variable QUALTRICS_KEY or use the 'key' ",
+# is_token is a variant of is_text with an error message for use with API tokens
+is_token <- is_text
+assertthat::on_failure(is_token) <- function(call, env) {
+  paste0("The Qualtrics API token should be a positive-length string. ",
+         "Set the environment variable QUALTRICS_TOKEN or use the 'token' ",
          "argument of the function making an API request. For more see ",
-         "help('key_from_file').")
+         "help('read_config').")
 }
 
 is_action <- function(x) {

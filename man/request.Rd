@@ -5,7 +5,7 @@
 \title{Send a request to the Qualtrics API}
 \usage{
 request(verb = c("GET", "POST", "PUT", "DELETE"), action,
-  key = Sys.getenv("QUALTRICS_KEY"),
+  token = Sys.getenv("QUALTRICS_TOKEN"),
   subdomain = Sys.getenv("QUALTRICS_SUBDOMAIN"), verbose = FALSE, ...)
 }
 \arguments{
@@ -14,8 +14,8 @@ request(verb = c("GET", "POST", "PUT", "DELETE"), action,
 \item{action}{Either an API action (like \code{"surveys"}) or a complete API
 URL.}
 
-\item{key}{A Qualtrics API key (by default, the value of the environment
-variable \code{QUALTRICS_KEY}).}
+\item{token}{A Qualtrics API token (by default, the value of the environment
+variable \code{QUALTRICS_TOKEN}).}
 
 \item{subdomain}{A Qualtrics subdomain (by default, the value of the
 environment variable \code{QUALTRICS_SUBDOMAIN}). Ignored if `action` is a
