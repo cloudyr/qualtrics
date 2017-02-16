@@ -8,6 +8,9 @@ matrix:
       sudo: false
     - os: linux
       dist: trusty
+    - os: linux
+      dist: trusty
+      r: devel
     - os: osx
       osx_image: xcode8
     - os: osx
