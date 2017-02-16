@@ -46,4 +46,3 @@ produce a warning.
 response <- request("GET", "surveys")
 }
 }
-

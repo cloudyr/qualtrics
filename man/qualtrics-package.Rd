@@ -2,11 +2,14 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{qualtrics-package}
-\alias{qualtrics}
 \alias{qualtrics-package}
-\title{qualtrics}
+\alias{qualtrics}
+\title{The qualtrics package: overview}
 \description{
-An R client for Qualtrics
+qualtrics is an R client for the Qualtrics survey platform. You will need a
+Qualtrics account and an [API
+key](https://www.qualtrics.com/support/integrations/api-integration/api-integration)
+for most functionality.
 }
 \details{
 This is a template package for the cloudyr project
@@ -19,4 +22,3 @@ James Dunham <james@jdunham.io>
 Jasper Ginn <jasperginn@hotmail.com>
 }
 \keyword{package}
-

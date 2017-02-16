@@ -2,8 +2,10 @@
 ^appveyor\.yml$
 ^CONTRIBUTING\.md$
 ^README\.Rmd$
+^README\.html$
 ^drat\.sh$
 ^knitreadme\.sh$
 /man-roxygen
 ^.*\.Rproj$
 ^\.Rproj\.user$
+
