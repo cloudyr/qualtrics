@@ -2,7 +2,7 @@
 #'
 #' qualtrics is an R client for the Qualtrics survey platform. You will need a
 #' Qualtrics account and an
-#' \href{https://www.qualtrics.com/support/integrations/api-integration/api-integration}{API key}
+#' \href{https://www.qualtrics.com/support/integrations/api-integration/api-integration}{API token}
 #' for most functionality. 
 #'
 #' @name qualtrics-package
