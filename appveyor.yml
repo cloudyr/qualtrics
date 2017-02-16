@@ -8,7 +8,7 @@ init:
 environment:
   global:
     WARNINGS_ARE_ERRORS: 1
-    USE_RTOOLS: true
+    USE_RTOOLS: false
 
   matrix:
   - R_VERSION: devel
@@ -34,6 +34,10 @@ build_script:
 test_script:
   - travis-tool.sh run_tests
 
+on_failure:
+  - 7z a failure.zip *.Rcheck\*
+  - appveyor PushArtifact failure.zip
+
 artifacts:
   - path: '*.Rcheck\**\*.log'
     name: Logs
@@ -52,3 +56,4 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
