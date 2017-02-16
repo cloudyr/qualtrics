@@ -6,11 +6,11 @@ test_that("request minimally works as expected", {
 
 test_that("action must give either a known action or a valid URL", {
   expect_error(request("GET", action = "foo"),
-    ".*not a valid Qualtrics API URL. \\(Can't parse hostname.\\).*")
+    ".*not a valid Qualtrics API URL.*Can't parse hostname.*")
   expect_error(request("GET", action = "https://az1.qualtrics.com/"),
-    ".*not a valid Qualtrics API URL. \\(Can't parse path.\\).*")
+    ".*not a valid Qualtrics API URL.*Can't parse path.*")
   expect_error(request("GET", action = "/some_path/"),
-    ".*not a valid Qualtrics API URL. \\(Can't parse hostname.\\).*")
+    ".*not a valid Qualtrics API URL.*Can't parse hostname.*")
 })
 
 test_that("verb must be an expected verb", {
@@ -86,3 +86,16 @@ test_that("check_api_url works as expected", {
   expect_error(check_api_url("https://co1.qualtrics.com/"),
     "Can't parse path.")
 })
+
+test_that("read_if_missing works as expected", {
+  fname <- tempfile()
+  cat("{\"LINE1\": \"line1_value\", \"LINE2\": \"line2_value\"}",
+    file = fname, fill = TRUE)
+  # value is missing, so read it from the file
+  expect_equal(read_if_missing("LINE1", "", path = fname), "line1_value")
+  # value isn't missing, so return its value unchanged
+  expect_equal(read_if_missing("LINE1", "value", path = fname), "value")
+  # failing to find a missing key is an error
+  expect_error(read_if_missing("FOO", "", path = fname), "Didn't find key")
+})
+

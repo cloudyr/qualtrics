@@ -62,12 +62,14 @@ request <- function(verb = c("GET", "POST", "PUT", "DELETE"),
   return(response)
 }
 
-read_if_missing <- function(key, value) {
+read_if_missing <- function(key, value, ...) {
   # If argument 'value' is empty, try using read_config() to get a valid
   # value.
   if (!is_text(value)) {
-    read_config(select = key)
-    return(Sys.getenv(key))
+    config <- read_config(select = key, setenv = FALSE, ...)
+    stopifnot(length(config) == 1)
+    stopifnot(key %in% names(config))
+    return(config[[key]])
   } else {
     return(value)
   }

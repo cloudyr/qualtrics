@@ -23,15 +23,18 @@
 #'
 #' @param path A file path.
 #' @param select Keys to select from the configuration file, optionally. 
+#' @param setenv Whether to set the environment variables using the
+#' configuration file contents as a side effect (the default), or not.
 #' @param verbose Whether to output the names of the environment variables read
 #' from the configuration file, or not (the default).
 #'
-#' @return Invisibly returns the names of the environment variables
-#'   read from the configuration file, after setting them as a side effect.
+#' @return Invisibly returns a named list of values read from the configuration
+#' file, and sets the name-value pairs as environment variables, if argument
+#' \code{setenv} is \code{TRUE} (the default).
 #' @importFrom jsonlite read_json
 #' @export
 read_config <- function(path = path.expand("~/.qualtrics_api"), select = NULL,
-  verbose = FALSE) {
+  setenv = TRUE, verbose = FALSE) {
   assert_that(is.string(path))
   if (length(select)) assert_that(is.character(select))
   if (file.exists(path)) {
@@ -41,11 +44,14 @@ read_config <- function(path = path.expand("~/.qualtrics_api"), select = NULL,
       # subset config to keys named in select
       config <- config[names(config) %in% select]
     }
-    if (length(config)) {
-      do.call(Sys.setenv, config)
+    if (!length(config)) {
+      stop("Didn't find key(s) in configuration file.")
     }
-    if (isTRUE(verbose)) {
-      message("Set from file: ", paste(names(config), collapse = ", "))
+    if (isTRUE(setenv)) {
+      do.call(Sys.setenv, config)
+      if (isTRUE(verbose)) {
+        message("Set from file: ", paste(names(config), collapse = ", "))
+      }
     }
   } else {
     # path doesn't exist
@@ -61,6 +67,6 @@ read_config <- function(path = path.expand("~/.qualtrics_api"), select = NULL,
       stop("Couldn't read ", path)
     }
   }
-  invisible(names(config))
+  invisible(config)
 }
 

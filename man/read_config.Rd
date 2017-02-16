@@ -5,12 +5,15 @@
 \title{Set API environment variables from a configuration file}
 \usage{
 read_config(path = path.expand("~/.qualtrics_api"), select = NULL,
-  verbose = FALSE)
+  setenv = TRUE, verbose = FALSE)
 }
 \arguments{
 \item{path}{A file path.}
 
 \item{select}{Keys to select from the configuration file, optionally.}
+
+\item{setenv}{Whether to set the environment variables using the
+configuration file contents (the default), or not.}
 
 \item{verbose}{Whether to output the names of the environment variables read
 from the configuration file, or not (the default).}
