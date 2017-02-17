@@ -14,8 +14,8 @@
 #' @param token A Qualtrics API token (by default, the value of the environment
 #'   variable \code{QUALTRICS_TOKEN}).
 #' @param subdomain A Qualtrics subdomain (by default, the value of the
-#'   environment variable \code{QUALTRICS_SUBDOMAIN}). Ignored if `action` is a
-#'   complete API URL.
+#'   environment variable \code{QUALTRICS_SUBDOMAIN}). Ignored if \code{action}
+#'   is a complete API URL.
 #' @param verbose Output API calls to \code{\link[base]{stderr}}.
 #' @param ... Further arguments to the function given by \code{verb}, e.g.,
 #'   \code{\link[httr]{GET}}.
