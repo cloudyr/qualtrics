@@ -4,10 +4,10 @@ qualtrics
 
 qualtrics is an R client for the Qualtrics survey platform.
 
-You will need an account and an [API key](https://www.qualtrics.com/support/integrations/api-integration/api-integration) for most functionality. Set the environment variable `QUALTRICS_KEY` to your key value. You can do this [during R startup](https://www.rdocumentation.org/packages/base/versions/3.3.1/topics/Startup) (recommended) or interactively with [`Sys.setenv()`](https://www.rdocumentation.org/packages/base/versions/3.3.1/topics/Sys.setenv):
+You will need an account and an [API token](https://www.qualtrics.com/support/integrations/api-integration/api-integration) for most functionality. Set the environment variable `QUALTRICS_TOKEN` to your token. You can do this [during R startup](https://www.rdocumentation.org/packages/base/versions/3.3.1/topics/Startup) (recommended), using a configuration file and `read_config()`, or interactively with [`Sys.setenv()`](https://www.rdocumentation.org/packages/base/versions/3.3.1/topics/Sys.setenv):
 
 ``` r
-Sys.setenv("QUALTRICS_KEY" = "mykey")
+Sys.setenv("QUALTRICS_TOKEN" = "mykey")
 ```
 
 Usage
@@ -20,7 +20,9 @@ library("qualtrics")
 Installation
 ------------
 
-[![CRAN](https://www.r-pkg.org/badges/version/qualtrics)](https://cran.r-project.org/package=qualtrics) ![Downloads](https://cranlogs.r-pkg.org/badges/qualtrics) [![Travis Build Status](https://travis-ci.org/cloudyr/qualtrics.svg?branch=master)](https://travis-ci.org/cloudyr/qualtrics) [![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/x3hbvp55a52h7a7k?svg=true)](https://ci.appveyor.com/project/cloudyr/qualtrics) [![codecov.io](https://codecov.io/github/cloudyr/qualtrics/coverage.svg?branch=master)](https://codecov.io/github/cloudyr/qualtrics?branch=master)
+[![CRAN](https://www.r-pkg.org/badges/version/qualtrics)](https://cran.r-project.org/package=qualtrics) ![Downloads](https://cranlogs.r-pkg.org/badges/qualtrics) [![Travis Build Status](https://travis-ci.org/cloudyr/qualtrics.svg?branch=master)](https://travis-ci.org/cloudyr/qualtrics)
+
+[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/x3hbvp55a52h7a7k?svg=true)](https://ci.appveyor.com/project/jamesdunham/qualtrics) [![codecov.io](https://codecov.io/github/cloudyr/qualtrics/coverage.svg?branch=master)](https://codecov.io/github/cloudyr/qualtrics?branch=master)
 
 This package is not yet on CRAN. To install the latest development version you can install from the cloudyr drat repository:
 
