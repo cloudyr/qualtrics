@@ -11,8 +11,8 @@
 #' @inheritParams httr::VERB
 #' @param action Either an API action (like \code{"surveys"}) or a complete API
 #'   URL.
-#' @param key A Qualtrics API key (by default, the value of the environment
-#'   variable \code{QUALTRICS_KEY}).
+#' @param token A Qualtrics API token (by default, the value of the environment
+#'   variable \code{QUALTRICS_TOKEN}).
 #' @param subdomain A Qualtrics subdomain (by default, the value of the
 #'   environment variable \code{QUALTRICS_SUBDOMAIN}). Ignored if `action` is a
 #'   complete API URL.
@@ -31,16 +31,17 @@
 #' }
 request <- function(verb = c("GET", "POST", "PUT", "DELETE"),
   action,
-  key = Sys.getenv("QUALTRICS_KEY"),
+  token = Sys.getenv("QUALTRICS_TOKEN"),
   subdomain = Sys.getenv("QUALTRICS_SUBDOMAIN"),
   verbose = FALSE,
   ...) {
 
+  token <- read_if_missing("QUALTRICS_TOKEN", token)
+  subdomain <- read_if_missing("QUALTRICS_SUBDOMAIN", subdomain)
+
   verb <- match.arg(verb)
   assert_that(is_text(verb))
   assert_that(is_text(action))
-  assert_that(is_key(key))
-  subdomain <- set_if_missing(subdomain)
   assert_that(is_text(subdomain))
   assert_that(is.flag(verbose))
 
@@ -49,14 +50,29 @@ request <- function(verb = c("GET", "POST", "PUT", "DELETE"),
   if (verbose) {
     message("Sending ", verb, " request to ", api_url)
   }
+
   response <- httr::VERB(verb,
     api_url,
-    add_qheaders(key),
+    add_qheaders(token),
     encode = ifelse(identical(verb, "POST"), "json", NULL),
     ...)
+
   stop_for_status(response)
   warn_on_notice(response)
   return(response)
+}
+
+read_if_missing <- function(key, value, ...) {
+  # If argument 'value' is empty, try using read_config() to get a valid
+  # value.
+  if (!is_text(value)) {
+    config <- read_config(select = key, setenv = FALSE, ...)
+    stopifnot(length(config) == 1)
+    stopifnot(key %in% names(config))
+    return(config[[key]])
+  } else {
+    return(value)
+  }
 }
 
 stop_for_status <- function(response) {
@@ -81,7 +97,7 @@ stop_for_status <- function(response) {
       please_report)
   } else if (code == 401) {
     # Unauthorized
-    stop(status_message, "Please check your API key.")
+    stop(status_message, "Please check your API token.")
   } else if (code == 429) {
     # Too Many Requests
     stop(status_message, "You have reached the request rate limit.")
@@ -104,23 +120,10 @@ warn_on_notice <- function(response) {
   }
 }
 
-add_qheaders <- function(key) {
+add_qheaders <- function(token) {
   # Add Qualtrics headers to a httr request
-  assert_that(is_key(key))
-  httr::add_headers("content_type" = "application/json", "x-api-token" = key)
-}
-
-set_if_missing <- function(subdomain) {
-  # If the subdomain is a length-zero string, the environment variable
-  # QUALTRICS_SUBDOMAIN hasn't been (properly) set. Return a valid subdomain to
-  # be used (\code{az1}) and throw a warning.
-  assert_that(is.string(subdomain))
-  if (subdomain == "") {
-    warning("Set the environment variable QUALTRICS_SUBDOMAIN for better performance. ",
-      "See https://api.qualtrics.com/docs/root-url.")
-    subdomain = "az1"
-  }
-  return(subdomain)
+  assert_that(is_token(token))
+  httr::add_headers("content_type" = "application/json", "x-api-token" = token)
 }
 
 parse_action <- function(action, subdomain) {

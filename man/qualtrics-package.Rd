@@ -7,12 +7,9 @@
 \title{The qualtrics package: overview}
 \description{
 qualtrics is an R client for the Qualtrics survey platform. You will need a
-Qualtrics account and an [API
-key](https://www.qualtrics.com/support/integrations/api-integration/api-integration)
+Qualtrics account and an
+\href{https://www.qualtrics.com/support/integrations/api-integration/api-integration}{API key}
 for most functionality.
-}
-\details{
-This is a template package for the cloudyr project
 }
 \author{
 Seth Barry

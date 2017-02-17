@@ -15,9 +15,8 @@ test_that("asserting is_text works as expected", {
   expect_error(assert_that(is_text(d)), "is not a string")
 })
 
-
-test_that("assert_key_set works as expected", {
-  expect_true(assert_that(is_key("value")))
-  expect_error(assert_that(is_key("")), "^The Qualtrics API key")
+test_that("is_token works as expected", {
+  expect_true(assert_that(is_token("value")))
+  expect_error(assert_that(is_token("")), "^The Qualtrics API token")
 })
 
